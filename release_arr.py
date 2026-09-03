@@ -104,6 +104,8 @@ class QbitClient:
             self.client.auth_log_in()
         except qbittorrentapi.LoginFailed as e:
             logger.error(f"qBittorrent login failed: {e}")
+        except Exception as e:
+            logger.error(f"qBittorrent connection failed during login: {e}")
 
     def get_downloading_torrents(self):
         return self.client.torrents_info(status_filter="downloading")
