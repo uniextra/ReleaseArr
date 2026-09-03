@@ -107,8 +107,8 @@ class QbitClient:
         except Exception as e:
             logger.error(f"qBittorrent connection failed during login: {e}")
 
-    def get_downloading_torrents(self):
-        return self.client.torrents_info(status_filter="downloading")
+    def get_torrents(self):
+        return self.client.torrents_info()
 
     def get_torrent_files(self, torrent_hash):
         return self.client.torrents_files(torrent_hash=torrent_hash)
@@ -228,7 +228,7 @@ def process_qbittorrent(qbit, sonarr):
         logger.error(f"Failed to fetch Sonarr queue: {e}")
 
     try:
-        torrents = qbit.get_downloading_torrents()
+        torrents = qbit.get_torrents()
     except Exception as e:
         logger.error(f"Failed to fetch torrents from qBittorrent: {e}")
         return
