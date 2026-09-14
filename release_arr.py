@@ -127,7 +127,7 @@ class QbitClient:
             self.is_logged_in = False
             return False
 
-    def get_torrents(self) -> qbittorrentapi.torrents.TorrentDictionaryList:
+    def get_torrents(self) -> Any:
         return self.client.torrents_info()
 
     def get_torrent_files(self, torrent_hash: str) -> Any:
